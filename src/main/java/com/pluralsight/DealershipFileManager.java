@@ -42,13 +42,32 @@ public class DealershipFileManager {
             return dealership;
 
         } catch (IOException e) {
-            System.out.println("Error 440" + e.getMessage());
+            System.out.println("Error 404" + e.getMessage());
         }
 
         return null;
     }
 
     public void saveDealership(Dealership dealership) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("inventory.csv"))) {
 
+            //Writes over existing Dealereship/Header
+            writer.write(dealership.getName() + "|" + dealership.getAddress() + "|" + dealership.getPhone());
+
+            writer.newLine();
+            // Write every vehicl in dealsip
+            //Calls They array list with the stored objects in it
+            for (Vehicle vehicle : dealership.getAllVehicles()) {
+
+                //Grabs information for each vehicle
+                writer.write(vehicle.getVin() + "|" + vehicle.getYear() + "|" + vehicle.getMake() + "|" + vehicle.getModel() + "|" +
+                        vehicle.getVehicleType() + "|" + vehicle.getColor() + "|" + vehicle.getOdometer() + "|" + vehicle.getPrice());
+
+                writer.newLine();
+            }
+        }
+        catch (IOException e) {
+            System.out.println("Error 404" + e.getMessage());
+        }
     }
 }
