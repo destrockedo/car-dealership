@@ -71,88 +71,97 @@ public class UserInterface {
 
 
     public void processGetByPriceRequest() {
-        ArrayList<Vehicle> priceVehicles = new ArrayList<>();
+        //ArrayList<Vehicle> priceVehicles = new ArrayList<>();
         System.out.println("What is your min Price range?");
         BigDecimal priceMin = scanner.nextBigDecimal();
         System.out.println("What is your max Price range?");
         BigDecimal priceMax = scanner.nextBigDecimal();
-        for (Vehicle vehicle : dealership.getAllVehicles()) {
+
+        /*for (Vehicle vehicle : dealership.getAllVehicles()) {
             //compareTo only for bigdecimal
             //greater than or equal to the min and less than or equal to the max
             if ((vehicle.getPrice().compareTo(priceMin) >= 0 && vehicle.getPrice().compareTo(priceMax) <=0  )) {
                 priceVehicles.add(vehicle);
             }
-        }
-        displayVehicles(priceVehicles);
+        }*/
+        //displayVehicles(priceVehicles);
+        displayVehicles(dealership.getVehiclesByPrice(priceMin, priceMax));
     }
 
     public void processGetByMakeModelRequest() {
-        ArrayList<Vehicle> MMVehicles = new ArrayList<>();
+        //ArrayList<Vehicle> MMVehicles = new ArrayList<>();
         System.out.println("What is your preferred Make?");
         String make = scanner.nextLine();
         System.out.println("What is preferred model?");
         String model = scanner.nextLine();
-        for (Vehicle vehicle : dealership.getAllVehicles()) {
+        /*for (Vehicle vehicle : dealership.getAllVehicles()) {
             if ((vehicle.getMake().equalsIgnoreCase(make) && vehicle.getModel().equalsIgnoreCase(model) )) {
                 MMVehicles.add(vehicle);
             }
-        }
-        displayVehicles(MMVehicles);
+        }*/
+        //displayVehicles(MMVehicles);
+        displayVehicles(dealership.getVehiclesByMakeModel(make, model));
     }
 
     public void processGetByYearRequest() {
-        ArrayList<Vehicle> yearVehicles = new ArrayList<>();
+        //ArrayList<Vehicle> yearVehicles = new ArrayList<>();
         System.out.println("What is your min Year range?");
         int yearMin = scanner.nextInt();
         System.out.println("What is your max Year range?");
         int yearMax = scanner.nextInt();
-        for (Vehicle vehicle : dealership.getAllVehicles()) {
+        scanner.nextLine();
+        /*for (Vehicle vehicle : dealership.getAllVehicles()) {
             if((vehicle.getYear() >= yearMin && vehicle.getYear() <= yearMax)) {
                 yearVehicles.add(vehicle);
-                scanner.nextLine();
+
             }
-        }
-        displayVehicles(yearVehicles);
+        }*/
+        //displayVehicles(yearVehicles);
+        displayVehicles(dealership.getVehiclesByYear(yearMin,yearMax));
     }
 
     public void processGetByColorRequest() {
-        ArrayList<Vehicle> colorVehicles = new ArrayList<>();
+        //ArrayList<Vehicle> colorVehicles = new ArrayList<>();
         System.out.println("What Color are you searching for today?");
         String color = scanner.nextLine();
-        for (Vehicle vehicle : dealership.getAllVehicles()) {
+        /*for (Vehicle vehicle : dealership.getAllVehicles()) {
             if(color.equalsIgnoreCase(vehicle.getColor())) {
                colorVehicles.add(vehicle);
             }
-        }
-        displayVehicles(colorVehicles);
+        }*/
+        //displayVehicles(colorVehicles);
+        displayVehicles(dealership.getVehiclesByColor(color));
     }
 
     public void processGetByMileageRequest() {
-        ArrayList<Vehicle> rangeVehicles = new ArrayList<>();
+        //ArrayList<Vehicle> rangeVehicles = new ArrayList<>();
         System.out.println("What is your min range?");
         int rangeMin = scanner.nextInt();
         System.out.println("What is your max range?");
         int rangeMax = scanner.nextInt();
-        for (Vehicle vehicle : dealership.getAllVehicles()) {
+        scanner.nextLine();
+        /*for (Vehicle vehicle : dealership.getAllVehicles()) {
             if((vehicle.getOdometer() >= rangeMin && vehicle.getOdometer() <= rangeMax)) {
              rangeVehicles.add(vehicle);
-                scanner.nextLine();
+
             }
-        }
-        displayVehicles(rangeVehicles);
+        }*/
+        //displayVehicles(rangeVehicles);
+        displayVehicles(dealership.getVehiclesByMileage(rangeMin, rangeMax));
     }
 
     public void processGetByVehicleTypeRequest() {
-        ArrayList<Vehicle> typeVehicles = new ArrayList<>();
+        //ArrayList<Vehicle> typeVehicles = new ArrayList<>();
         System.out.println("What Type of vehicle are you searching for today?");
         String type = scanner.nextLine();
-        for (Vehicle vehicle : dealership.getAllVehicles()) {
+        /*for (Vehicle vehicle : dealership.getAllVehicles()) {
             if(type.equalsIgnoreCase(vehicle.getVehicleType())) {
                 typeVehicles.add(vehicle);
 
             }
-        }
-        displayVehicles(typeVehicles);
+        }*/
+        //displayVehicles(typeVehicles);
+        displayVehicles(dealership.getVehiclesByType(type));
     }
 
     public void processGetAllVehiclesRequest() {
@@ -208,7 +217,19 @@ public class UserInterface {
         }
     }
 
-    public void processRemoveVehicleRequest(Vehicle vehicle) {
+    public void processRemoveVehicleRequest() {
+        System.out.println("What is the Vin number of the vehicle your removing?");
+        int vin = scanner.nextInt();
+        scanner.nextLine();
+
+        //Varaible with vehicle object
+        Vehicle remove = null;
+
+        for (Vehicle vehicle : dealership.getAllVehicles())
+            if (vehicle.getVin() == vin) {
+                remove = vehicle;
+            }
+
 
     }
     private void displayVehicles(ArrayList<Vehicle> vehicles) {
