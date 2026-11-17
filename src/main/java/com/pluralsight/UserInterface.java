@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
-
+    Scanner scanner = new Scanner(System.in);
     // Stores the dealership object, allows UserInterface to access its info/vehicles
     private Dealership dealership;
 
@@ -24,12 +24,12 @@ public class UserInterface {
         //Loads Dealership
         init();
 
-            Scanner scanner = new Scanner(System.in);
+
             boolean running = true;
 
 
             while (running) {
-                System.out.print("What can I do for you today? > ");
+                System.out.println("What can I do for you today? > ");
                 System.out.println("[1] Find Vehicles within a price range");
                 System.out.println("[2] Find Vehicles by make/model");
                 System.out.println("[3] Find Vehicles by year range");
@@ -43,6 +43,7 @@ public class UserInterface {
 
 
                 int input = scanner.nextInt();
+                scanner.nextLine();
                 try {
 
                 switch (input) {
@@ -80,15 +81,40 @@ public class UserInterface {
     }
 
     public void processGetByColorRequest() {
+        System.out.println("What Color are you searching for today?");
+        String color = scanner.nextLine();
+        for (Vehicle vehicle : dealership.getAllVehicles()) {
+            if(color.equalsIgnoreCase(vehicle.getColor())) {
+                System.out.println(vehicle.getVin() + "|" + vehicle.getYear() + "|" + vehicle.getMake() + "|" + vehicle.getModel() + "|" +
+                        vehicle.getVehicleType() + "|" + vehicle.getColor() + "|" + vehicle.getOdometer() + "|" + vehicle.getPrice());
+            }
+        }
 
     }
 
     public void processGetByMileageRequest() {
 
+        System.out.println("What is your min range?");
+        int rangeMin = scanner.nextInt();
+        System.out.println("What is your max range?");
+        int rangeMax = scanner.nextInt();
+        for (Vehicle vehicle : dealership.getAllVehicles()) {
+            if((vehicle.getOdometer() >= rangeMin && vehicle.getOdometer() <= rangeMax)) {
+                System.out.println(vehicle.getVin() + "|" + vehicle.getYear() + "|" + vehicle.getMake() + "|" + vehicle.getModel() + "|" +
+                        vehicle.getVehicleType() + "|" + vehicle.getColor() + "|" + vehicle.getOdometer() + "|" + vehicle.getPrice());
+            }
+        }
     }
 
     public void processGetByVehicleTypeRequest() {
-
+        System.out.println("What Type of vehicle are you searching for today?");
+        String type = scanner.nextLine();
+        for (Vehicle vehicle : dealership.getAllVehicles()) {
+            if(type.equalsIgnoreCase(vehicle.getVehicleType())) {
+                System.out.println(vehicle.getVin() + "|" + vehicle.getYear() + "|" + vehicle.getMake() + "|" + vehicle.getModel() + "|" +
+                        vehicle.getVehicleType() + "|" + vehicle.getColor() + "|" + vehicle.getOdometer() + "|" + vehicle.getPrice());
+            }
+        }
     }
 
     public void processGetAllVehiclesRequest() {
