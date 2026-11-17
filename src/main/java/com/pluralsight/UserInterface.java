@@ -1,6 +1,7 @@
 
 package com.pluralsight;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -69,15 +70,44 @@ public class UserInterface {
 
 
     public void processGetByPriceRequest() {
-
+        System.out.println("What is your min Price range?");
+        BigDecimal priceMin = scanner.nextBigDecimal();
+        System.out.println("What is your max Price range?");
+        BigDecimal priceMax = scanner.nextBigDecimal();
+        for (Vehicle vehicle : dealership.getAllVehicles()) {
+            if ((vehicle.getPrice() >= priceMin && vehicle.getPrice() <= priceMax)) {
+                System.out.println(vehicle.getVin() + "|" + vehicle.getYear() + "|" + vehicle.getMake() + "|" + vehicle.getModel() + "|" +
+                        vehicle.getVehicleType() + "|" + vehicle.getColor() + "|" + vehicle.getOdometer() + "|" + vehicle.getPrice());
+                scanner.nextLine();
+            }
+        }
     }
 
     public void processGetByMakeModelRequest() {
-
+        System.out.println("What is your preferred Make?");
+        String make = scanner.nextLine();
+        System.out.println("What is preferred model?");
+        String model = scanner.nextLine();
+        for (Vehicle vehicle : dealership.getAllVehicles()) {
+            if ((vehicle.getMake().equalsIgnoreCase(make) && vehicle.getModel().equalsIgnoreCase(model) )) {
+                System.out.println(vehicle.getVin() + "|" + vehicle.getYear() + "|" + vehicle.getMake() + "|" + vehicle.getModel() + "|" +
+                        vehicle.getVehicleType() + "|" + vehicle.getColor() + "|" + vehicle.getOdometer() + "|" + vehicle.getPrice());
+            }
+        }
     }
 
     public void processGetByYearRequest() {
-
+        System.out.println("What is your min Year range?");
+        int yearMin = scanner.nextInt();
+        System.out.println("What is your max Year range?");
+        int yearMax = scanner.nextInt();
+        for (Vehicle vehicle : dealership.getAllVehicles()) {
+            if((vehicle.getYear() >= yearMin && vehicle.getYear() <= yearMax)) {
+                System.out.println(vehicle.getVin() + "|" + vehicle.getYear() + "|" + vehicle.getMake() + "|" + vehicle.getModel() + "|" +
+                        vehicle.getVehicleType() + "|" + vehicle.getColor() + "|" + vehicle.getOdometer() + "|" + vehicle.getPrice());
+                scanner.nextLine();
+            }
+        }
     }
 
     public void processGetByColorRequest() {
@@ -102,6 +132,7 @@ public class UserInterface {
             if((vehicle.getOdometer() >= rangeMin && vehicle.getOdometer() <= rangeMax)) {
                 System.out.println(vehicle.getVin() + "|" + vehicle.getYear() + "|" + vehicle.getMake() + "|" + vehicle.getModel() + "|" +
                         vehicle.getVehicleType() + "|" + vehicle.getColor() + "|" + vehicle.getOdometer() + "|" + vehicle.getPrice());
+                scanner.nextLine();
             }
         }
     }
