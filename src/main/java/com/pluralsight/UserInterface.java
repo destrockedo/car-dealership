@@ -1,6 +1,7 @@
 
 package com.pluralsight;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -91,7 +92,7 @@ public class UserInterface {
     }
 
     public void processGetAllVehiclesRequest() {
-
+        displayVehicles(dealership.getAllVehicles());
     }
 
     public void processAddVehicleRequest() {
@@ -100,5 +101,13 @@ public class UserInterface {
 
     public void processRemoveVehicleRequest() {
 
+    }
+    private void displayVehicles(ArrayList<Vehicle> vehicles) {
+        //Prints all vehicles in array
+        for (Vehicle vehicle : vehicles) {
+            System.out.println(
+                    vehicle.getVin() + " | " + vehicle.getYear() + " | " + vehicle.getMake() + " | " + vehicle.getModel() + " | " +
+                            vehicle.getVehicleType() + " | " + vehicle.getColor() + " | " + vehicle.getOdometer() + " | " + vehicle.getPrice());
+        }
     }
 }
