@@ -75,10 +75,11 @@ public class UserInterface {
         System.out.println("What is your max Price range?");
         BigDecimal priceMax = scanner.nextBigDecimal();
         for (Vehicle vehicle : dealership.getAllVehicles()) {
-            if ((vehicle.getPrice() >= priceMin && vehicle.getPrice() <= priceMax)) {
+            //compareTo only for bigdecimal
+            //greater than or equal to the min and less than or equal to the max
+            if ((vehicle.getPrice().compareTo(priceMin) >= 0 && vehicle.getPrice().compareTo(priceMax) <=0  )) {
                 System.out.println(vehicle.getVin() + "|" + vehicle.getYear() + "|" + vehicle.getMake() + "|" + vehicle.getModel() + "|" +
                         vehicle.getVehicleType() + "|" + vehicle.getColor() + "|" + vehicle.getOdometer() + "|" + vehicle.getPrice());
-                scanner.nextLine();
             }
         }
     }
@@ -152,7 +153,8 @@ public class UserInterface {
         displayVehicles(dealership.getAllVehicles());
     }
 
-    public void processAddVehicleRequest() {
+    public void processAddVehicleRequest(Scanner scanner) {
+
 
     }
 
