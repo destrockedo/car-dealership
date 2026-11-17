@@ -45,10 +45,9 @@ public class UserInterface {
                 System.out.println("[99] Quit");
 
 
-                int input = scanner.nextInt();
-                scanner.nextLine();
                 try {
-
+                    int input = scanner.nextInt();
+                    scanner.nextLine();
                 switch (input) {
                     case 1 -> processGetByPriceRequest();
                     case 2 -> processGetByMakeModelRequest();
@@ -76,6 +75,7 @@ public class UserInterface {
         BigDecimal priceMin = scanner.nextBigDecimal();
         System.out.println("What is your max Price range?");
         BigDecimal priceMax = scanner.nextBigDecimal();
+        scanner.nextLine();
 
         /*for (Vehicle vehicle : dealership.getAllVehicles()) {
             //compareTo only for bigdecimal
