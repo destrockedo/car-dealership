@@ -108,7 +108,9 @@ public class Dealership {
     }
     public void addVehicle (Vehicle vehicle){vehicles.add(vehicle);}
 
-    public void removeVehicle(Vehicle vehicle){}
+    public void removeVehicle(Vehicle vehicle){
+        vehicles.remove(vehicle);
+    }
 
     public ArrayList<Vehicle> getAllVehicles() {
         return vehicles;

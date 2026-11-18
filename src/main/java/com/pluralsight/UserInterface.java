@@ -221,13 +221,17 @@ public class UserInterface {
         System.out.println("What is the Vin number of the vehicle your removing?");
         int vin = scanner.nextInt();
         scanner.nextLine();
-
-        //Varaible with vehicle object
-        Vehicle remove = null;
-
+        //Updatess array lisst
         for (Vehicle vehicle : dealership.getAllVehicles())
             if (vehicle.getVin() == vin) {
-                remove = vehicle;
+                 dealership.removeVehicle(vehicle);
+
+                 //updates csv file
+                DealershipFileManager fileManager = new DealershipFileManager();
+                fileManager.saveDealership(dealership);
+
+                System.out.println("Vehicle removed!");
+                return;
             }
 
 
